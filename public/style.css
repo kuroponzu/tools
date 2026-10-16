@@ -23,6 +23,30 @@
   }
 }
 
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --bg: #0f1115;
+  --surface: #1a1d24;
+  --border: #2a2e37;
+  --text: #e8e9ec;
+  --muted: #9aa0ab;
+  --accent: #5b8cff;
+  --accent-text: #0b0e14;
+  --danger: #ff5b6e;
+}
+
+:root[data-theme="light"] {
+  color-scheme: light;
+  --bg: #f5f6f8;
+  --surface: #ffffff;
+  --border: #e1e3e8;
+  --text: #1a1d24;
+  --muted: #5c6270;
+  --accent: #3b66e0;
+  --accent-text: #ffffff;
+  --danger: #d13847;
+}
+
 * {
   box-sizing: border-box;
 }
@@ -33,90 +57,146 @@ body {
   background: var(--bg);
   color: var(--text);
   min-height: 100vh;
+  display: flex;
 }
 
-header {
-  padding: 2rem 1.5rem 1rem;
-  text-align: center;
+.sidebar {
+  width: 240px;
+  flex-shrink: 0;
+  background: var(--surface);
+  border-right: 1px solid var(--border);
+  padding: 1.5rem 0;
+  display: flex;
+  flex-direction: column;
 }
 
-header h1 {
-  margin: 0;
-  font-size: 1.5rem;
-}
-
-header a {
-  color: inherit;
+.sidebar-title {
+  display: block;
+  padding: 0 1.5rem 1.5rem;
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: var(--text);
   text-decoration: none;
 }
 
-header p {
+.tool-list {
+  flex: 1;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.theme-toggle {
+  margin: 1rem 1.5rem 0;
+  padding: 0.5rem 0.75rem;
+  font-size: 0.85rem;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: var(--bg);
+  color: var(--text);
+  cursor: pointer;
+}
+
+.tool-link {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.6rem 1.5rem;
   color: var(--muted);
-  margin: 0.4rem 0 0;
-  font-size: 0.9rem;
+  text-decoration: none;
+  font-size: 0.95rem;
+}
+
+.tool-link:hover {
+  background: var(--bg);
+  color: var(--text);
+}
+
+.tool-link.active {
+  background: var(--accent);
+  color: var(--accent-text);
+}
+
+.tool-icon {
+  font-size: 1.1rem;
 }
 
 main {
-  max-width: 720px;
-  margin: 0 auto;
-  padding: 1.5rem;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
 }
 
-.grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-  gap: 1rem;
-}
-
-.card {
-  display: block;
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  padding: 1.25rem;
-  text-decoration: none;
-  color: var(--text);
-  transition: border-color 0.15s ease, transform 0.15s ease;
-}
-
-.card:hover {
-  border-color: var(--accent);
-  transform: translateY(-2px);
-}
-
-.card .icon {
-  font-size: 1.75rem;
-}
-
-.card h2 {
-  font-size: 1.05rem;
-  margin: 0.5rem 0 0.25rem;
-}
-
-.card p {
-  margin: 0;
-  font-size: 0.85rem;
+.empty-state {
   color: var(--muted);
-}
-
-.back-link {
-  display: inline-block;
-  margin-bottom: 1rem;
-  color: var(--muted);
-  text-decoration: none;
-  font-size: 0.9rem;
-}
-
-.back-link:hover {
-  color: var(--accent);
 }
 
 .panel {
+  width: 100%;
+  max-width: 480px;
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: 12px;
   padding: 2rem;
   text-align: center;
+}
+
+.panel.wide {
+  max-width: 560px;
+}
+
+.panel-title {
+  margin: 0 0 1.25rem;
+  font-size: 1.2rem;
+}
+
+.ip-input-row {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.ip-input-row input[type="text"] {
+  flex: 1;
+  padding: 0.6rem 0.75rem;
+  font-size: 1rem;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: var(--bg);
+  color: var(--text);
+}
+
+.ip-result-table {
+  width: 100%;
+  margin-top: 1.5rem;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.ip-result-table th,
+.ip-result-table td {
+  padding: 0.5rem 0.25rem;
+  border-bottom: 1px solid var(--border);
+  font-size: 0.9rem;
+}
+
+.ip-result-table th {
+  color: var(--muted);
+  font-weight: 500;
+  width: 40%;
+}
+
+.advice-box {
+  margin-top: 1rem;
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  color: var(--muted);
+  font-size: 0.85rem;
+  text-align: left;
+  line-height: 1.5;
 }
 
 .timer-display {
@@ -197,4 +277,33 @@ button:disabled {
   color: var(--muted);
   font-size: 0.9rem;
   min-height: 1.2em;
+}
+
+@media (max-width: 640px) {
+  body {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    width: 100%;
+    border-right: none;
+    border-bottom: 1px solid var(--border);
+    padding: 1rem 0;
+  }
+
+  .tool-list {
+    display: flex;
+    overflow-x: auto;
+    padding: 0 0.5rem;
+  }
+
+  .tool-link {
+    padding: 0.5rem 1rem;
+    white-space: nowrap;
+  }
+
+  main {
+    max-width: none;
+    padding: 1.5rem;
+  }
 }
