@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>IPアドレス検索 | Dev Tools</title>
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body>
+    <main>
+      <div class="panel wide">
+        <h1 class="panel-title">IPアドレス検索</h1>
+        <div class="ip-input-row">
+          <input id="ip-input" type="text" placeholder="例: 8.8.8.8" />
+          <button id="lookup-btn" class="primary">検索</button>
+        </div>
+        <div id="status" class="status"></div>
+        <div id="result"></div>
+      </div>
+    </main>
+    <script src="/sidebar.js"></script>
+    <script src="/ip-lookup/ip-lookup.js"></script>
+  </body>
+</html>
